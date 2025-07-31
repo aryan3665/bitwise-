@@ -1,0 +1,126 @@
+**Decimal to Binary and Binary to Decimal in C++ with Bitwise Explanation**
+
+### 1. Decimal to Binary Conversion in C++
+
+To convert a decimal number to binary, we divide the number by 2 repeatedly and store the remainder.
+
+**Code:**
+
+```cpp
+#include <iostream>
+using namespace std;
+
+void decimalToBinary(int n) {
+    int binary[32];
+    int i = 0;
+    while (n > 0) {
+        binary[i] = n % 2;
+        n = n / 2;
+        i++;
+    }
+    // Print in reverse
+    for (int j = i - 1; j >= 0; j--)
+        cout << binary[j];
+    cout << endl;
+}
+```
+
+### 2. Binary to Decimal Conversion in C++
+
+We multiply each bit by 2^position and add them up.
+
+**Code:**
+
+```cpp
+int binaryToDecimal(string bin) {
+    int decimal = 0;
+    int base = 1; // 2^0
+    for (int i = bin.length() - 1; i >= 0; i--) {
+        if (bin[i] == '1')
+            decimal += base;
+        base *= 2;
+    }
+    return decimal;
+}
+```
+
+---
+
+### 3. How Computers Store Integers in Binary
+
+* Integers are stored in binary form in memory.
+* For a 32-bit system:
+
+  * 10 is: `00000000 00000000 00000000 00001010`
+  * -10 is stored using **2's complement**.
+
+#### 1's Complement:
+
+* Flip all bits.
+* Example: `00001010` -> `11110101`
+
+#### 2's Complement:
+
+* Add 1 to 1's complement:
+* `11110101` + `1` = `11110110`
+
+So, -10 = `11110110` (in 8-bit for example).
+
+---
+
+### 4. Bitwise Operators in C++
+
+#### AND (&)
+
+* `1 & 1 = 1`, `1 & 0 = 0`
+* Used to mask bits.
+
+#### OR (|)
+
+* `1 | 0 = 1`, `0 | 0 = 0`
+* Used to set bits.
+
+#### XOR (^)
+
+* `1 ^ 0 = 1`, `1 ^ 1 = 0`
+* Used to toggle bits.
+  no of 1 agar odd hai to ans 1 agar even hain to 0
+
+#### NOT (\~)
+
+* Flips every bit.
+* \~`00001010` = `11110101`
+
+#### Left Shift (<<)
+
+* Moves bits to left, fills with 0s.
+* `n << k` = `n * 2^k`
+* Example: `5 << 1 = 10`
+
+#### Right Shift (>>)
+
+* Moves bits to right, fills with 0s.
+* `n >> k` = `n / 2^k`
+* Example: `10 >> 1 = 5`
+
+---
+
+### 5. Important Notes
+
+* Computers store negative numbers in 2's complement form.
+* Right shift is equivalent to integer division by powers of 2.
+* Left shift is equivalent to multiplying by powers of 2.
+* Use unsigned int for predictable behavior in bitwise operations.
+* Bitwise operations are faster than arithmetic operations.
+* C++ provides `<bitset>` to easily work with binary strings.
+
+**Example using bitset:**
+
+```cpp
+#include <bitset>
+cout << bitset<8>(10); // prints 00001010
+```
+
+
+
+This guide helps you understand how to work with binary, convert values, and use bitwise logic in C++ effectively.
