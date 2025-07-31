@@ -85,6 +85,7 @@ So, -10 = `11110110` (in 8-bit for example).
 * `1 ^ 0 = 1`, `1 ^ 1 = 0`
 * Used to toggle bits.
   no of 1 agar odd hai to ans 1 agar even hain to 0
+same number ka same number se xor is  always 0
 
 #### NOT (\~)
 
